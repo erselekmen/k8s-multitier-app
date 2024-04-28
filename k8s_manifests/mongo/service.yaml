@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: workshop
-  name: mongodb-svc
+  namespace: ${NAMESPACE}
+  name: ${DB_SERVICE}
 spec:
   selector:
-    app: mongodb
+    app: ${DB_APP_NAME}
   ports:
-  - name: mongodb-svc
+  - name: ${DB_SERVICE}
     protocol: TCP
     port: 27017
     targetPort: 27017

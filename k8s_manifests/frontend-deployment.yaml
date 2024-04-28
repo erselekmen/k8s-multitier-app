@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  namespace: workshop
+  name: ${FRONTEND_NAME}
+  namespace: ${NAMESPACE}
   labels:
     role: frontend
-    env: demo
+    env: ${ENV}
 spec:
   replicas: 1
   strategy:
@@ -22,8 +22,8 @@ spec:
         role: frontend
     spec:
       containers:
-      - name: frontend
-        image: public.ecr.aws/l0l7e4u1/3-tier-frontend:latest
+      - name: ${FRONTEND_CONTAINER}
+        image: public.ecr.aws/h1l7z7k8/webapp-image:latest
         imagePullPolicy: Always
         env:
           - name: REACT_APP_BACKEND_URL

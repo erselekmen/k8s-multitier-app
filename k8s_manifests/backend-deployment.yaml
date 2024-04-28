@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
-  namespace: workshop
+  name: ${BACKEND_NAME}
+  namespace: ${NAMESPACE}
   labels:
     role: backend
-    env: demo
+    env: ${ENV}
 spec:
   replicas: 1
   strategy:
@@ -22,8 +22,8 @@ spec:
         role: backend
     spec:
       containers:
-      - name: backend
-        image: public.ecr.aws/l0l7e4u1/3-tier-backend:latest
+      - name: ${BACKEND_CONTAINER}
+        image: public.ecr.aws/h1l7z7k8/backend-image:latest
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
