@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ${NAMESPACE}
-  name: ${DB_APP_NAME}
+  namespace: multitier
+  name: mongodb-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ${DB_APP_NAME}
+      app: mongodb-deployment
   template:
     metadata:
       labels:
-        app: ${DB_APP_NAME}
+        app: mongodb-deployment
     spec:
       containers:
-      - name: ${DB_CONTAINER}
+      - name: mongodb-container
         image: mongo:4.4.6
         command:
             - "numactl"

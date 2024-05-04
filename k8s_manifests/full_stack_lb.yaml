@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ${ALB_NAME}
-  namespace: ${NAMESPACE}
+  name: mainlb
+  namespace: multitier
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
@@ -10,20 +10,20 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: 
+    - host:
       http:
         paths:
           - path: /backend
             pathType: Prefix
             backend:
               service:
-                name: ${BACKEND_SERVICE}
+                name: backend-service
                 port:
                   number: 8080
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: ${FRONTEND_SERVICE}
+                name: webapp-service
                 port:
                   number: 3000

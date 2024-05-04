@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ${BACKEND_NAME}
-  namespace: ${NAMESPACE}
+  name: backend-deployment
+  namespace: multitier
   labels:
     role: backend
-    env: ${ENV}
+    env: dev
 spec:
   replicas: 1
   strategy:
@@ -22,12 +22,12 @@ spec:
         role: backend
     spec:
       containers:
-      - name: ${BACKEND_CONTAINER}
+      - name: backend-container
         image: public.ecr.aws/h1l7z7k8/backend-image:latest
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
-            value: mongodb://mongodb-svc:27017/todo?directConnection=true
+            value: mongodb+srv://erselekmen:VV4J5jV9&q*3XrY@cluster0.eh8uyv7.mongodb.net/?retryWrites=true&w=majority
           - name: MONGO_USERNAME
             valueFrom:
               secretKeyRef:

@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ${FRONTEND_NAME}
-  namespace: ${NAMESPACE}
+  name: webapp-deployment
+  namespace: multitier
   labels:
     role: frontend
-    env: ${ENV}
+    env: dev
 spec:
   replicas: 1
   strategy:
@@ -22,7 +22,7 @@ spec:
         role: frontend
     spec:
       containers:
-      - name: ${FRONTEND_CONTAINER}
+      - name: webapp-container
         image: public.ecr.aws/h1l7z7k8/webapp-image:latest
         imagePullPolicy: Always
         env:
